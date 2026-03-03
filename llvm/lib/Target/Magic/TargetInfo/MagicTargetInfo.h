@@ -1,0 +1,12 @@
+#ifndef LLVM_LIB_TARGET_MAGIC_TARGETINFO_MAGICTARGETINFO_H
+#define LLVM_LIB_TARGET_MAGIC_TARGETINFO_MAGICTARGETINFO_H
+
+namespace llvm {
+
+class Target;
+
+Target &getTheMagicTarget();
+
+} // end namespace llvm
+
+#endif // LLVM_LIB_TARGET_MAGIC_TARGETINFO_MAGICTARGETINFO_H

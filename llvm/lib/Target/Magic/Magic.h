@@ -1,0 +1,20 @@
+#ifndef LLVM_LIB_TARGET_Magic_Magic_H
+#define LLVM_LIB_TARGET_Magic_Magic_H
+
+#include "llvm/Support/raw_ostream.h"
+
+#define MAGIC_DUMP(Color)                                                        \
+  {                                                                            \
+    llvm::errs().changeColor(Color)                                            \
+        << __func__ << "\n\t\t" << __FILE__ << ":" << __LINE__ << "\n";        \
+    llvm::errs().changeColor(llvm::raw_ostream::WHITE);                        \
+  }
+// #define MAGIC_DUMP(Color) {}
+
+#define MAGIC_DUMP_RED MAGIC_DUMP(llvm::raw_ostream::RED)
+#define MAGIC_DUMP_GREEN MAGIC_DUMP(llvm::raw_ostream::GREEN)
+#define MAGIC_DUMP_YELLOW MAGIC_DUMP(llvm::raw_ostream::YELLOW)
+#define MAGIC_DUMP_CYAN MAGIC_DUMP(llvm::raw_ostream::CYAN)
+#define MAGIC_DUMP_MAGENTA MAGIC_DUMP(llvm::raw_ostream::MAGENTA)
+
+#endif // LLVM_LIB_TARGET_Magic_Magic_H
