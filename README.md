@@ -1,3 +1,58 @@
+# LLVM Course Student Repo
+
+## First task
+registered target `Magic`
+
+```
+~/llvm-project$ build/bin/llc --version
+LLVMInitializeMagicTargetInfo
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/TargetInfo/MagicTargetInfo.cpp:14
+getTheMagicTarget
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/TargetInfo/MagicTargetInfo.cpp:8
+LLVMInitializeMagicTarget
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/MagicTargetMachine.cpp:11
+getTheMagicTarget
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/TargetInfo/MagicTargetInfo.cpp:8
+LLVMInitializeMagicTargetMC
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/MCTargetDesc/MagicMCTargetDesc.cpp:5
+LLVM (http://llvm.org/):
+  LLVM version 20.1.0
+  Optimized build with assertions.
+  Default target: x86_64-unknown-linux-gnu
+  Host CPU: alderlake
+
+  Registered Targets:
+    magic - Magic Weave simulator target for LLVM course
+~/llvm-project$ build/bin/clang -print-targets
+LLVMInitializeMagicTargetInfo
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/TargetInfo/MagicTargetInfo.cpp:14
+getTheMagicTarget
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/TargetInfo/MagicTargetInfo.cpp:8
+LLVMInitializeMagicTarget
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/MagicTargetMachine.cpp:11
+getTheMagicTarget
+                /home/dragon/llvm-project/llvm/lib/Target/Magic/TargetInfo/MagicTargetInfo.cpp:8
+
+  Registered Targets:
+    magic - Magic Weave simulator target for LLVM course
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------
 # The LLVM Compiler Infrastructure
 
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/llvm/llvm-project/badge)](https://securityscorecards.dev/viewer/?uri=github.com/llvm/llvm-project)
