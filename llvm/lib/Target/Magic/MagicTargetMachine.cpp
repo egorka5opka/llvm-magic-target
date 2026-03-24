@@ -24,3 +24,24 @@ MagicTargetMachine::MagicTargetMachine(const Target &T, const Triple &TT,
   MAGIC_DUMP_CYAN
   initAsmInfo();
 }
+
+namespace {
+
+/// Magic Code Generator Pass Configuration Options.
+class MagicPassConfig : public TargetPassConfig {
+public:
+  MagicPassConfig(MagicTargetMachine &TM, PassManagerBase &PM)
+      : TargetPassConfig(TM, PM) {}
+
+  bool addInstSelector() override {
+    MAGIC_DUMP_CYAN
+    return false;
+  }
+};
+
+} // end anonymous namespace
+
+TargetPassConfig *MagicTargetMachine::createPassConfig(PassManagerBase &PM) {
+  MAGIC_DUMP_CYAN
+  return new MagicPassConfig(*this, PM);
+}
