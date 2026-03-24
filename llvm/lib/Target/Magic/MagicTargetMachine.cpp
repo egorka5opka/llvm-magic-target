@@ -1,6 +1,7 @@
 #include "MagicTargetMachine.h"
 #include "Magic.h"
 #include "TargetInfo/MagicTargetInfo.h"
+#include "llvm/CodeGen/TargetPassConfig.h"
 #include "llvm/MC/TargetRegistry.h"
 #include <optional>
 
@@ -33,8 +34,13 @@ public:
   MagicPassConfig(MagicTargetMachine &TM, PassManagerBase &PM)
       : TargetPassConfig(TM, PM) {}
 
+  MagicTargetMachine &getMagicTargetMachine() const {
+    return getTM<MagicTargetMachine>();
+  }
+
   bool addInstSelector() override {
     MAGIC_DUMP_CYAN
+    addPass(createMagicISelDag(getMagicTargetMachine(), getOptLevel()));
     return false;
   }
 };
