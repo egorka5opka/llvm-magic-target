@@ -8,6 +8,7 @@ tablegen(LLVM MagicGenSubtargetInfo.inc -gen-subtarget)
 tablegen(LLVM MagicGenMCPseudoLowering.inc -gen-pseudo-lowering)
 tablegen(LLVM MagicGenDAGISel.inc -gen-dag-isel)
 tablegen(LLVM MagicGenCallingConv.inc -gen-callingconv)
+tablegen(LLVM MagicGenAsmWriter.inc -gen-asm-writer)
 
 add_public_tablegen_target(MagicCommonTableGen)
 
