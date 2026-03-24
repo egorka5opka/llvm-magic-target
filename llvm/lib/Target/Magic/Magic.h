@@ -2,6 +2,7 @@
 #define LLVM_LIB_TARGET_Magic_Magic_H
 
 #include "llvm/Support/raw_ostream.h"
+#include "MCTargetDesc/MagicMCTargetDesc.h"
 
 #define MAGIC_DUMP(Color)                                                        \
   {                                                                            \
@@ -16,5 +17,6 @@
 #define MAGIC_DUMP_YELLOW MAGIC_DUMP(llvm::raw_ostream::YELLOW)
 #define MAGIC_DUMP_CYAN MAGIC_DUMP(llvm::raw_ostream::CYAN)
 #define MAGIC_DUMP_MAGENTA MAGIC_DUMP(llvm::raw_ostream::MAGENTA)
+#define MGIC_DUMP_WHITE MAGIC_DUMP(llvm::raw_ostream::WHITE)
 
 #endif // LLVM_LIB_TARGET_Magic_Magic_H
