@@ -20,6 +20,7 @@ add_llvm_target(MagicCodeGen
   MagicAsmPrinter.cpp
   MagicISelDagToDag.cpp
   MagicISelLowering.cpp
+  MagicMCInstLower.cpp
 
   LINK_COMPONENTS
   CodeGen

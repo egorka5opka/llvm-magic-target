@@ -22,7 +22,19 @@
 namespace llvm {
 class MagicTargetMachine;
 class FunctionPass;
+class MagicSubtarget;
+class AsmPrinter;
+class InstructionSelector;
+class MCInst;
+class MCOperand;
+class MachineInstr;
+class MachineOperand;
+class PassRegistry;
 
+bool lowerMagicMachineInstrToMCInst(const MachineInstr *MI, MCInst &OutMI,
+                                  AsmPrinter &AP);
+bool LowerMagicMachineOperandToMCOperand(const MachineOperand &MO,
+                                       MCOperand &MCOp, const AsmPrinter &AP);
 FunctionPass *createMagicISelDag(MagicTargetMachine &TM, CodeGenOptLevel OptLevel);
 
 } // namespace llvm
