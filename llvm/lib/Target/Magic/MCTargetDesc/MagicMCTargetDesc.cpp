@@ -1,10 +1,13 @@
 #include "MCTargetDesc/MagicInfo.h"
 #include "Magic.h"
+#include "MagicMCAsmInfo.h"
 #include "TargetInfo/MagicTargetInfo.h"
+#include "llvm/MC/MCDwarf.h"
 #include "llvm/MC/MCInstrInfo.h"
 #include "llvm/MC/MCRegisterInfo.h"
 #include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/MC/TargetRegistry.h"
+#include "llvm/Support/ErrorHandling.h"
 
 using namespace llvm;
 
@@ -37,11 +40,22 @@ static MCSubtargetInfo *createMagicMCSubtargetInfo(const Triple &TT,
   return createMagicMCSubtargetInfoImpl(TT, CPU, /*TuneCPU*/ CPU, FS);
 }
 
+static MCAsmInfo *createMagicMCAsmInfo(const MCRegisterInfo &MRI,
+                                     const Triple &TT,
+                                     const MCTargetOptions &Options) {
+  MAGIC_DUMP_MAGENTA
+  MCAsmInfo *MAI = new MagicELFMCAsmInfo(TT);
+  unsigned SP = MRI.getDwarfRegNum(Magic::R1, true);
+  MCCFIInstruction Inst = MCCFIInstruction::cfiDefCfa(nullptr, SP, 0);
+  MAI->addInitialFrameState(Inst);
+  return MAI;
+}
 
 // We need to define this function for linking succeed
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeMagicTargetMC() {
   MAGIC_DUMP_MAGENTA
   Target &TheMagicTarget = getTheMagicTarget();
+  RegisterMCAsmInfoFn X(TheMagicTarget, createMagicMCAsmInfo);
   // Register the MC register info.
   TargetRegistry::RegisterMCRegInfo(TheMagicTarget, createMagicMCRegisterInfo);
   // Register the MC instruction info.

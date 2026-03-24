@@ -1,5 +1,6 @@
 add_llvm_component_library(LLVMMagicDesc
   MagicMCTargetDesc.cpp
+  MagicMCAsmInfo.cpp
 
   LINK_COMPONENTS
   MC
