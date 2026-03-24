@@ -1,6 +1,7 @@
 include "llvm/Target/Target.td"
 include "MagicRegisterInfo.td"
 include "MagicInstrInfo.td"
+include "MagicCallingConv.td"
 
 class Proc<string Name, list<SubtargetFeature> Features>
  : Processor<Name, NoItineraries, Features>;
