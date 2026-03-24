@@ -14,4 +14,4 @@ using namespace llvm;
 
 #define DEBUG_TYPE "Magic-inst-info"
 
-MagicInstrInfo::MagicInstrInfo() : MagicGenInstrInfo() { Magic_DUMP_GREEN }
+MagicInstrInfo::MagicInstrInfo() : MagicGenInstrInfo() { MAGIC_DUMP_GREEN }

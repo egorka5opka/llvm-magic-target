@@ -48,8 +48,8 @@ def PseudoRET : MagicPseudoInst<(outs), (ins), "# PseudoRET",
                 [(magic_ret)]>,
                 PseudoInstExpansion<(BR R0)>;
 
-// movli
+// mov
 let isAsCheapAsAMove = 1, isCodeGenOnly = 1, isReMaterializable = 1 in
-def MOVLI : MagicInst<0x0, (outs GPR:$rd), (ins simm16:$imm),
-                     "MOVli $rd $imm",
+def MOV : MagicInst<0x0, (outs GPR:$rd), (ins simm16:$imm),
+                     "MOV $rd $imm",
                      [(set GPR:$rd, simm16:$imm)]>;

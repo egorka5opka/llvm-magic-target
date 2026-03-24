@@ -7,7 +7,7 @@ namespace llvm {
 
 namespace MagicOp {
 enum OperandType : unsigned {
-  OPERAND_MAGICM16 = MCOI::OPERAND_FIRST_TARGET,
+  OPERAND_SIMM16 = MCOI::OPERAND_FIRST_TARGET,
 };
 } // namespace MagicOp
 

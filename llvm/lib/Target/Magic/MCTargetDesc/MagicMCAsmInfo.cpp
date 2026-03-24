@@ -4,7 +4,7 @@
 using namespace llvm;
 
 MagicELFMCAsmInfo::MagicELFMCAsmInfo(const Triple &TT) {
-  Magic_DUMP_MAGENTA
+  MAGIC_DUMP_MAGENTA
   SupportsDebugInformation = false;
   Data16bitsDirective = "\t.short\t";
   Data32bitsDirective = "\t.word\t";
