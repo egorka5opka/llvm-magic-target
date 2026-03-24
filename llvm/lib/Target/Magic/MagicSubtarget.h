@@ -4,7 +4,9 @@
 #include "Magic.h"
 #include "MagicFrameLowering.h"
 #include "MagicISelLowering.h"
+#include "MagicInstrInfo.h"
 #include "MagicRegisterInfo.h"
+#include "llvm/CodeGen/SelectionDAGTargetInfo.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
 
 #define GET_SUBTARGETINFO_HEADER
@@ -16,6 +18,8 @@ class MagicSubtarget : public MagicGenSubtargetInfo {
   MagicTargetLowering TLInfo;
   MagicFrameLowering FrameLowering;
   MagicRegisterInfo RegInfo;
+  MagicInstrInfo InstrInfo;
+  SelectionDAGTargetInfo TSInfo;
 
 public:
   MagicSubtarget(const Triple &TT, const std::string &CPU, const std::string &FS,
@@ -36,6 +40,11 @@ public:
   const MagicRegisterInfo *getRegisterInfo() const override {
     MAGIC_DUMP_CYAN
     return &RegInfo;
+  }
+  const MagicInstrInfo *getInstrInfo() const override { return &InstrInfo; }
+  const SelectionDAGTargetInfo *getSelectionDAGInfo() const override {
+    MAGIC_DUMP_CYAN
+    return &TSInfo;
   }
 };
 
