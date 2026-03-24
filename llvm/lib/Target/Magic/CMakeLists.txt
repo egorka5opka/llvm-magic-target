@@ -10,7 +10,6 @@ tablegen(LLVM MagicGenDAGISel.inc -gen-dag-isel)
 
 add_public_tablegen_target(MagicCommonTableGen)
 
-
 add_llvm_target(MagicCodeGen
   MagicTargetMachine.cpp
   MagicRegisterInfo.cpp
@@ -18,6 +17,7 @@ add_llvm_target(MagicCodeGen
   MagicSubtarget.cpp
   MagicAsmPrinter.cpp
   MagicISelDagToDag.cpp
+  MagicISelLowering.cpp
 
   LINK_COMPONENTS
   CodeGen

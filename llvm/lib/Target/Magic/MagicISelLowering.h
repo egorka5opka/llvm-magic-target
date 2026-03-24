@@ -22,6 +22,21 @@ enum NodeType : unsigned {
 
 } // namespace MagicISD
 
+
+class MagicTargetLowering : public TargetLowering {
+public:
+  explicit MagicTargetLowering(const TargetMachine &TM, const MagicSubtarget &STI);
+
+  /// This method returns the name of a target specific DAG node.
+  const char *getTargetNodeName(unsigned Opcode) const override;
+
+  MagicSubtarget const &getSubtarget() const { return STI; }
+
+private:
+  const MagicSubtarget &STI;
+};
+
+
 } // end namespace llvm
 
 #endif // LLVM_LIB_TARGET_MAGIC_MAGICISELLOWERING_H

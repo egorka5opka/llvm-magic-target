@@ -10,8 +10,8 @@ using namespace llvm;
 #define GET_SUBTARGETINFO_CTOR
 #include "MagicGenSubtargetInfo.inc"
 
-MagicSubtarget::MagicSubtarget(const StringRef &CPU, const StringRef &TuneCPU,
-                           const StringRef &FS, const TargetMachine &TM)
-    : MagicGenSubtargetInfo(TM.getTargetTriple(), CPU, TuneCPU, FS) {
+MagicSubtarget::MagicSubtarget(const Triple &TT, const std::string &CPU,
+                           const std::string &FS, const TargetMachine &TM)
+    : MagicGenSubtargetInfo(TT, CPU, /*TuneCPU=*/CPU, FS), TLInfo(TM, *this) {
   Magic_DUMP_CYAN
 }
