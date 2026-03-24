@@ -12,6 +12,7 @@ using namespace llvm;
 
 MagicSubtarget::MagicSubtarget(const Triple &TT, const std::string &CPU,
                            const std::string &FS, const TargetMachine &TM)
-    : MagicGenSubtargetInfo(TT, CPU, /*TuneCPU=*/CPU, FS), TLInfo(TM, *this) {
+    : MagicGenSubtargetInfo(TT, CPU, /*TuneCPU=*/CPU, FS), TLInfo(TM, *this),
+      FrameLowering(*this) {
   Magic_DUMP_CYAN
 }
