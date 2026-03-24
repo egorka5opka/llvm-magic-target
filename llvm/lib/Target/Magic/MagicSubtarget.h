@@ -4,6 +4,7 @@
 #include "Magic.h"
 #include "MagicFrameLowering.h"
 #include "MagicISelLowering.h"
+#include "MagicRegisterInfo.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
 
 #define GET_SUBTARGETINFO_HEADER
@@ -14,6 +15,7 @@ namespace llvm {
 class MagicSubtarget : public MagicGenSubtargetInfo {
   MagicTargetLowering TLInfo;
   MagicFrameLowering FrameLowering;
+  MagicRegisterInfo RegInfo;
 
 public:
   MagicSubtarget(const Triple &TT, const std::string &CPU, const std::string &FS,
@@ -30,6 +32,10 @@ public:
   const MagicFrameLowering *getFrameLowering() const override {
     MAGIC_DUMP_CYAN
     return &FrameLowering;
+  }
+  const MagicRegisterInfo *getRegisterInfo() const override {
+    MAGIC_DUMP_CYAN
+    return &RegInfo;
   }
 };
 
