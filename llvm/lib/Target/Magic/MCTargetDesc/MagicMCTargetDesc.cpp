@@ -1,5 +1,6 @@
 #include "MCTargetDesc/MagicInfo.h"
 #include "Magic.h"
+#include "MagicInstPrinter.h"
 #include "MagicMCAsmInfo.h"
 #include "TargetInfo/MagicTargetInfo.h"
 #include "llvm/MC/MCDwarf.h"
@@ -51,6 +52,15 @@ static MCAsmInfo *createMagicMCAsmInfo(const MCRegisterInfo &MRI,
   return MAI;
 }
 
+static MCInstPrinter *createMagicMCInstPrinter(const Triple &T,
+                                             unsigned SyntaxVariant,
+                                             const MCAsmInfo &MAI,
+                                             const MCInstrInfo &MII,
+                                             const MCRegisterInfo &MRI) {
+  MAGIC_DUMP_MAGENTA
+  return new MagicInstPrinter(MAI, MII, MRI);
+}
+
 // We need to define this function for linking succeed
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeMagicTargetMC() {
   MAGIC_DUMP_MAGENTA
@@ -63,4 +73,7 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeMagicTargetMC() {
     // Register the MC subtarget info.
   TargetRegistry::RegisterMCSubtargetInfo(TheMagicTarget,
                                           createMagicMCSubtargetInfo);
+
+  // Register the MCInstPrinter
+  TargetRegistry::RegisterMCInstPrinter(TheMagicTarget, createMagicMCInstPrinter);
 }
