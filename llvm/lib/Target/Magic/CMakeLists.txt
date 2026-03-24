@@ -4,6 +4,8 @@ set(LLVM_TARGET_DEFINITIONS Magic.td)
 
 tablegen(LLVM MagicGenRegisterInfo.inc -gen-register-info)
 tablegen(LLVM MagicGenInstrInfo.inc -gen-instr-info)
+tablegen(LLVM MagicGenSubtargetInfo.inc -gen-subtarget)
+tablegen(LLVM MagicGenMCPseudoLowering.inc -gen-pseudo-lowering)
 
 add_public_tablegen_target(MagicCommonTableGen)
 
@@ -13,6 +15,7 @@ add_llvm_target(MagicCodeGen
   MagicRegisterInfo.cpp
   MagicInstrInfo.cpp
   MagicSubtarget.cpp
+  MagicAsmPrinter.cpp
 
   LINK_COMPONENTS
   CodeGen
@@ -20,6 +23,7 @@ add_llvm_target(MagicCodeGen
   Support
   Target
   MagicInfo
+  AsmPrinter
 
   ADD_TO_COMPONENT
   Magic
