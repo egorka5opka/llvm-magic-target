@@ -40,13 +40,13 @@ def simm16 : Operand<i32>, ImmLeaf<i32, [{return isInt<16>(Imm);}]> {
 //===----------------------------------------------------------------------===//
 
 let hasSideEffects = 0, mayLoad = 0, mayStore = 0, isCall = 1, isBranch = 1, isTerminator = 1 in
-def BR : MagicInst<0x0, (outs), (ins GPR:$rs1), "BR $rs1",
+def GOTO : MagicInst<0x0, (outs), (ins GPR:$rs1), "GOTO $rs1",
                   [(brind GPR:$rs1)]>;
 
 let isBarrier = 1, isReturn = 1, isTerminator = 1 in
 def PseudoRET : MagicPseudoInst<(outs), (ins), "# PseudoRET",
                 [(magic_ret)]>,
-                PseudoInstExpansion<(BR R0)>;
+                PseudoInstExpansion<(GOTO R0)>;
 
 // mov
 let isAsCheapAsAMove = 1, isCodeGenOnly = 1, isReMaterializable = 1 in
