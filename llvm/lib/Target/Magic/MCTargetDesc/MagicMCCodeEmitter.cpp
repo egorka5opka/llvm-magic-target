@@ -30,14 +30,14 @@ STATISTIC(MCNumEmitted, "Number of MC instructions emitted");
 
 namespace {
 
-class MagixMCCodeEmitter : public MCCodeEmitter {
+class MagicMCCodeEmitter : public MCCodeEmitter {
   MCContext &Ctx;
 
 public:
-  MagixMCCodeEmitter(const MCInstrInfo &, MCContext &ctx) : Ctx(ctx) {}
-  MagixMCCodeEmitter(const MagixMCCodeEmitter &) = delete;
-  MagixMCCodeEmitter &operator=(const MagixMCCodeEmitter &) = delete;
-  ~MagixMCCodeEmitter() override = default;
+  MagicMCCodeEmitter(const MCInstrInfo &, MCContext &ctx) : Ctx(ctx) {}
+  MagicMCCodeEmitter(const MagicMCCodeEmitter &) = delete;
+  MagicMCCodeEmitter &operator=(const MagicMCCodeEmitter &) = delete;
+  ~MagicMCCodeEmitter() override = default;
 
   void encodeInstruction(const MCInst &MI, SmallVectorImpl<char> &CB,
                          SmallVectorImpl<MCFixup> &Fixups,
@@ -61,7 +61,7 @@ public:
 
 } // end anonymous namespace
 
-void MagixMCCodeEmitter::encodeInstruction(const MCInst &MI,
+void MagicMCCodeEmitter::encodeInstruction(const MCInst &MI,
                                          SmallVectorImpl<char> &CB,
                                          SmallVectorImpl<MCFixup> &Fixups,
                                          const MCSubtargetInfo &STI) const {
@@ -71,7 +71,7 @@ void MagixMCCodeEmitter::encodeInstruction(const MCInst &MI,
   ++MCNumEmitted; // Keep track of the # of mi's emitted.
 }
 
-unsigned MagixMCCodeEmitter::getMachineOpValue(const MCInst &MI,
+unsigned MagicMCCodeEmitter::getMachineOpValue(const MCInst &MI,
                                              const MCOperand &MO,
                                              SmallVectorImpl<MCFixup> &Fixups,
                                              const MCSubtargetInfo &STI) const {
@@ -92,7 +92,7 @@ unsigned MagixMCCodeEmitter::getMachineOpValue(const MCInst &MI,
   return 0;
 }
 
-unsigned MagixMCCodeEmitter::getSImm16OpValue(const MCInst &MI, unsigned OpNo,
+unsigned MagicMCCodeEmitter::getSImm16OpValue(const MCInst &MI, unsigned OpNo,
                                             SmallVectorImpl<MCFixup> &Fixups,
                                             const MCSubtargetInfo &STI) const {
   const MCOperand &MO = MI.getOperand(OpNo);
@@ -115,5 +115,5 @@ unsigned MagixMCCodeEmitter::getSImm16OpValue(const MCInst &MI, unsigned OpNo,
 
 MCCodeEmitter *llvm::createMagicMCCodeEmitter(const MCInstrInfo &MCII,
                                             MCContext &Ctx) {
-  return new MagixMCCodeEmitter(MCII, Ctx);
+  return new MagicMCCodeEmitter(MCII, Ctx);
 }

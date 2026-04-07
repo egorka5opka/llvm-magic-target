@@ -50,6 +50,6 @@ def PseudoRET : MagicPseudoInst<(outs), (ins), "# PseudoRET",
 
 // mov
 let isAsCheapAsAMove = 1, isCodeGenOnly = 1, isReMaterializable = 1, r2 = 0 in
-def MOV : MagicInst<0x0, (outs GPR:$rd), (ins simm16:$imm),
+def MOV : MagicInst<0xAA, (outs GPR:$r1), (ins simm16:$r3_imm),
                      "MOV $r1 $r3_imm",
                      [(set GPR:$r1, simm16:$r3_imm)]>;
