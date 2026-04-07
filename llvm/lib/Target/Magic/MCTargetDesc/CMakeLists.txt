@@ -4,6 +4,7 @@ add_llvm_component_library(LLVMMagicDesc
   MagicInstPrinter.cpp
   MagicMCCodeEmitter.cpp
   MagicAsmBackend.cpp
+  MagicELFObjectWriter.cpp
 
   LINK_COMPONENTS
   MC

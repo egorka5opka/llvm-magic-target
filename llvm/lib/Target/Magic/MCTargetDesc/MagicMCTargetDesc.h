@@ -1,6 +1,7 @@
 #ifndef LLVM_LIB_TARGET_MAGIC_MCTARGETDESC_MAGICMCTARGETDESC_H
 #define LLVM_LIB_TARGET_MAGIC_MCTARGETDESC_MAGICMCTARGETDESC_H
 
+#include <memory>
 namespace llvm {
 class MCCodeEmitter;
 class MCContext;
@@ -16,6 +17,8 @@ MCCodeEmitter *createMagicMCCodeEmitter(const MCInstrInfo &MCII, MCContext &Ctx)
 MCAsmBackend *createMagicAsmBackend(const Target &T, const MCSubtargetInfo &STI,
                                   const MCRegisterInfo &MRI,
                                   const MCTargetOptions &Options);
+std::unique_ptr<MCObjectTargetWriter> createMagicELFObjectWriter(bool Is64Bit,
+                                                               uint8_t OSABI);
 } // namespace llvm
 
 // Defines symbolic names for Magic registers.  This defines a mapping from
