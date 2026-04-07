@@ -78,4 +78,6 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeMagicTargetMC() {
   TargetRegistry::RegisterMCInstPrinter(TheMagicTarget, createMagicMCInstPrinter);
   // Register the MC Code Emitter.
   TargetRegistry::RegisterMCCodeEmitter(TheMagicTarget, createMagicMCCodeEmitter);
+  // Register the asm backend.
+  TargetRegistry::RegisterMCAsmBackend(TheMagicTarget, createMagicAsmBackend);
 }
