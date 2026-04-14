@@ -59,5 +59,5 @@ let r1 = 0, r2 = 0, r3_imm = 0 in
 def FLUSH : MagicInst<0xFF, (outs), (ins), "FLUSH", [(int_magic_flush)]>;
 
 // draw_cell
-def PUTPIXEL : MagicInst<0xEE, (outs), (ins GPR:$r1, GPR:$r2, GPR:$r3_imm),
-                      "PUTPIXEL $r1 $r2 $r3_imm", [(int_magic_draw_cell GPR:$r1, GPR:$r2, GPR:$r3_imm)]>;
+def DRAWC : MagicInst<0xEE, (outs), (ins GPR:$r1, GPR:$r2, GPR:$r3_imm),
+                      " $r1 $r2 $r3_imm", [(int_magic_drawcell GPR:$r1, GPR:$r2, GPR:$r3_imm)]>;

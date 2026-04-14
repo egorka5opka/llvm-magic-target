@@ -1,0 +1,4 @@
+BUILTIN(magicDrawCell, "vUiUiUi", "nc")
+BUILTIN(magicFlush, "v", "nc")
+
+#undef BUILTIN
